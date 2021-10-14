@@ -1,9 +1,13 @@
-const { Router } = require('express')
-const ExampleRouter = require("./ExampleRouter")
+const { Router } = require('express');
+const UsersRouter = require('./UsersRoutes');
+const ProductsRouter = require('./ProductsRoutes');
+const OrdersRouter = require('./OrdersRoutes');
 
-const router = Router()
+const router = Router();
 
-// aqui vai todas as rotas
-router.use('/example', ExampleRouter);
+// aqui vao todas as rotas
+router.use('/users', UsersRouter);
+router.use('/products', ProductsRouter);
+router.use('/orders', OrdersRouter);
 
-module.exports = router
+module.exports = router;
