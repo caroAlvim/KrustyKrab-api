@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/', usersGetAll);
 router.post('/', usersPost);
-router.put('/', updateUser);
+router.put('/:id', updateUser);
 router.get('/:id', getUserById);
 router.delete('/:id', usersDelete);
 // router.patch('/:id', getExample);

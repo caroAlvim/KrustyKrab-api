@@ -25,5 +25,3 @@ const updateUser = (req, res) => {
 module.exports = {
   usersGetAll, usersPost, usersDelete, getUserById, updateUser,
 };
-
-// metodos para get, put, update, delete para cada rota

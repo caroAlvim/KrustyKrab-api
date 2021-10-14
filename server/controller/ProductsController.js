@@ -7,4 +7,19 @@ const getProductById = (req, res) => {
   // id
 };
 
-module.exports = { productsGetAll, getProductById };
+// definir se estas funçoes serão necessárias
+const productsPost = (req, res) => {
+  res.status(201).send('Você esta na rota de products e esta realizando um post');
+};
+
+const updateProducts = (req, res) => {
+  res.status(201).send('Você esta na rota de products com id e esta realizando um update');
+};
+
+const productsDelete = (req, res) => {
+  res.status(201).send('Você esta na rota de products com id e esta realizando um post');
+};
+
+module.exports = {
+  productsGetAll, getProductById, productsPost, updateProducts, productsDelete,
+};
