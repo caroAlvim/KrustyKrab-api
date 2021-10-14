@@ -3,7 +3,6 @@ const { productsGetAll, getProductById } = require('../controller/ProductsContro
 
 const router = Router();
 
-// aqui vao as requisições
 router.get('/', productsGetAll);
 router.get('/:id', getProductById);
 

@@ -3,7 +3,7 @@ const ordersGetAll = (req, res) => {
 };
 
 const ordersPost = (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   res.status(201).send('Você esta na rota de orders e esta realizando um post');
 };
 

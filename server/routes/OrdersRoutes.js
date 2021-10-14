@@ -5,7 +5,6 @@ const {
 
 const router = Router();
 
-// aqui vao as requisições
 router.get('/', ordersGetAll);
 router.post('/', ordersPost);
 router.get('/:id', orderGet);
