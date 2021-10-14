@@ -5,7 +5,7 @@ const usersGetAll = (req, res) => {
 };
 
 const usersPost = (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   res.status(201).send('Você esta na rota de users e esta realizando um post');
 };
 
@@ -13,15 +13,12 @@ const usersDelete = (req, res) => {
   res.status(201).send('Você esta na rota de users e esta realizando um delete');
 };
 
-const userGet = (req, res) => {
+const getUserById = (req, res) => {
   res.status(201).send('Você esta na rota de users com id e esta realizando um get');
+  // id
 };
-
 module.exports = {
-  usersGetAll, usersPost, usersDelete, userGet,
+  usersGetAll, usersPost, usersDelete, getUserById,
 };
 
-// metodos para get, put, update, delete para cada rota,
-
-// module.exports = (app) => {
-// app.get('/users', (req, res) => res.send('Você esta na rota de users e esta realizando um get'));
+// metodos para get, put, update, delete para cada rota

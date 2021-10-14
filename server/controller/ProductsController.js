@@ -1,9 +1,10 @@
-const getProductsExample = (req, res) => {
-  res.send('Request getProductsExample feita');
+const productsGetAll = (req, res) => {
+  res.status(201).send('Você esta na rota de products e esta realizando um get');
 };
 
-const getOtherProductsExample = (req, res) => {
-  res.send('Request getOtherProductsExample feita');
+const getProductById = (req, res) => {
+  res.status(201).send('Você esta na rota de products com id e esta realizando um get');
+  // id
 };
 
-module.exports = { getProductsExample, getOtherProductsExample };
+module.exports = { productsGetAll, getProductById };
