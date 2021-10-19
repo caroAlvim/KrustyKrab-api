@@ -10,13 +10,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      // define association here
       Orders.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
       Orders.belongsToMany(models.Product, {
         through: 'ProductsOrders',
         as: 'products',
         foreignKey: 'order_id',
       });
-      // define association here
     }
   }
   Orders.init({
@@ -29,6 +29,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Orders',
   });
-  
   return Orders;
 };

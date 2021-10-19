@@ -28,8 +28,6 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-
-    
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete('Users');
     /**
