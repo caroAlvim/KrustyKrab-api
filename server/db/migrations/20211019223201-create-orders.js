@@ -1,36 +1,40 @@
 /* eslint-disable no-unused-vars */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Orders', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
+      user_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Users', key: 'id' },
+      },
+      client_name: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      email: {
+      table: {
         allowNull: false,
-        unique: true,
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
-      password: {
+      details: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
-      role: {
+      status: {
         allowNull: false,
         type: Sequelize.STRING,
-      },
-      restaurant: {
-        allowNull: false,
-        type: Sequelize.STRING,
+        defaultValue: 'pending',
       },
       createdAt: {
         allowNull: false,
+        type: Sequelize.DATE,
+      },
+      processedAt: {
         type: Sequelize.DATE,
       },
       updatedAt: {
@@ -41,6 +45,6 @@ module.exports = {
   },
   
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('Orders');
   },
 };

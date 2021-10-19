@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('teste', {
+    await queryInterface.createTable('Products', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,21 +12,21 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      email: {
+      price: {
         allowNull: false,
-        unique: true,
+        type: Sequelize.DECIMAL(10, 2),
+      },
+      flavor: {
         type: Sequelize.STRING,
       },
-      password: {
+      complement: {
+        type: Sequelize.STRING,
+      },
+      type: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      role: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      restaurant: {
-        allowNull: false,
+      sub_type: {
         type: Sequelize.STRING,
       },
       createdAt: {
@@ -36,9 +37,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('teste');
+    await queryInterface.dropTable('Products');
   },
 };
