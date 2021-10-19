@@ -7,6 +7,8 @@ module.exports = {
       password: '123456',
       role: 'cozinha',
       restaurant: 'abc',
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     {
       name: 'Mari',
@@ -14,6 +16,8 @@ module.exports = {
       password: '123456',
       role: 'salao',
       restaurant: 'abcd',
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
   ]), /**
      * Add seed commands here.
@@ -26,6 +30,7 @@ module.exports = {
     */
 
   down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete('Users');
     /**
      * Add commands to revert seed here.
      *
