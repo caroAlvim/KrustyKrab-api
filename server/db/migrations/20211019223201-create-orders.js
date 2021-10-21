@@ -21,10 +21,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      details: {
-        allowNull: false,
-        type: Sequelize.TEXT,
-      },
+      // details: {
+      //   allowNull: false,
+      //   type: Sequelize.TEXT,
+      // },
       status: {
         allowNull: false,
         type: Sequelize.STRING,

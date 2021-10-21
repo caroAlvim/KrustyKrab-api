@@ -1,12 +1,32 @@
-const Users = require('../db/models');
+const db = require('../db/models');
 
+// const UsersControllers = {
+//   async getAllUsers(req, res, next) {
+//     const allUsers = await db.Users.findAll()
+
+// }
+//   async getAllUsers(req, res, next) {
+//     try {
+//       const listUserId = await function();
+//       const usersListOrganized = {
+//         'id': listUserId.id,
+//         'name': listUserId.name,
+//       }
+//       res.status(201).send(usersListOrganized);
+//     } catch (error){
+//       next(error);
+//     }
+//   },
+// };
 
 const usersGetAll = async (req, res) => {
-  try {
-    const { id, name } = req.body;
+  await db.Users.findAll();
 
-    const user = await Users.
-  }
+  // try {
+  //   const { id, name } = req.body;
+
+  //   const user = await Users.
+  // }
   
 
   res.status(201).send('Você esta na rota de users e esta realizando um get');
