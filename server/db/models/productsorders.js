@@ -4,16 +4,11 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class ProductsOrders extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // define association here
-      ProductsOrders.belongsTo(models.Order, { foreignKey: 'order_id', as: 'order' });
-      ProductsOrders.belongsTo(models.Product, { foreignKey: 'product_id', as: 'product' });
-      ProductsOrders.belongsToMany(models.Product, {
+      ProductsOrders.belongsTo(models.Orders, { foreignKey: 'order_id', as: 'order' });
+      ProductsOrders.belongsTo(models.Products, { foreignKey: 'product_id', as: 'product' });
+      ProductsOrders.belongsToMany(models.Products, {
         through: 'ProductsOrders',
         as: 'products',
         foreignKey: 'order_id',

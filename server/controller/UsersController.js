@@ -1,6 +1,14 @@
+const Users = require('../db/models');
 
 
-const usersGetAll = (req, res) => {
+const usersGetAll = async (req, res) => {
+  try {
+    const { id, name } = req.body;
+
+    const user = await Users.
+  }
+  
+
   res.status(201).send('Você esta na rota de users e esta realizando um get');
 };
 
