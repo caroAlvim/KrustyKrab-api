@@ -1,58 +1,65 @@
 const db = require('../db/models');
 
-// const UsersControllers = {
-//   async getAllUsers(req, res, next) {
-//     const allUsers = await db.Users.findAll()
-
-// }
-//   async getAllUsers(req, res, next) {
-//     try {
-//       const listUserId = await function();
-//       const usersListOrganized = {
-//         'id': listUserId.id,
-//         'name': listUserId.name,
-//       }
-//       res.status(201).send(usersListOrganized);
-//     } catch (error){
-//       next(error);
-//     }
-//   },
-// };
-
 const usersGetAll = async (req, res) => {
-  await db.Users.findAll();
-
-  // try {
-  //   const { id, name } = req.body;
-
-  //   const user = await Users.
-  // }
-  
-
-  res.status(201).send('Você esta na rota de users e esta realizando um get');
+  const getUsers = await db.Users.findAll();
+  try {
+    return res.status(200).json(getUsers);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
 };
 
-const usersPost = (req, res) => {
-  // console.log(req.body);
-  res.status(201).send('Você esta na rota de users e esta realizando um post');
+const getUserById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const getUser = await db.Users.findOne({
+      where: { id: Number(id) },
+      attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
+    });
+    // if (!getUser) {
+    //   return res.status(200).json('Usuário não encontrado');
+    // }
+    return res.status(200).json(getUser);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
 };
 
-const usersDelete = (req, res) => {
-  res.status(201).send('Você esta na rota de users e esta realizando um delete');
+const usersPost = async (req, res) => {
+  const newUser = req.body;
+  try {
+    const creatingNewUser = await db.Users.create(newUser);
+    return res.status(200).json(creatingNewUser);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
 };
 
-const getUserById = (req, res) => {
-  res.status(201).send('Você esta na rota de users com id e esta realizando um get');
-  // id
+const updateUser = async (req, res) => {
+  const { id } = req.params;
+  const updateUser = req.body;
+  try {
+    await db.Users.update(updateUser, { where: { id: Number(id) } });
+    const userUpdated = await db.Users.findOne({
+      where: { id: Number(id) },
+      attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
+    });
+    return res.status(200).json(userUpdated);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
 };
 
-const updateUser = (req, res) => {
-  res.status(201).send('Você esta na rota de users com id e esta realizando um update');
-  // id
+const usersDelete = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await db.Users.destroy({ where: { id: Number(id) } });
+    return res.status(200).json({ message: `id ${id} deletado` });
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
 };
 
 module.exports = {
   usersGetAll, usersPost, usersDelete, getUserById, updateUser,
 };
-
-// module.exports = UsersControllers
