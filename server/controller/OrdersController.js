@@ -1,37 +1,50 @@
-const ordersGetAll = (req, res) => {
-  res.status(201).send('Você esta na rota de orders e esta realizando um get');
+const db = require('../db/models');
+
+const ordersGetAll = async (req, res) => {
+  const getOrders = await db.Orders.findAll();
+  try {
+    return res.status(200).json(getOrders);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
 };
 
-const ordersPost = (req, res) => {
-  // console.log(req.body);
-  res.status(201).send('Você esta na rota de orders e esta realizando um post');
+const orderGet = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const getOrders = await db.Orders.findOne({
+      where: { id: Number(id) },
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
+    // if (!getOrders) {
+    //   return res.status(200).json({ message: 'Produto não encontrado'});
+    // }
+    return res.status(200).json(getOrders);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
 };
 
-const orderDelete = (req, res) => {
-  res.status(201).send('Você esta na rota de orders e esta realizando um delete');
-  // id
+const ordersPost = async (req, res) => {
+  const newOrder = req.body;
+  try {
+    const creatingNewOrder = await db.Orders.create(newOrder);
+    return res.status(200).json(creatingNewOrder);
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
 };
 
-const orderGet = (req, res) => {
-  res.status(201).send('Você esta na rota de orders com id e esta realizando um get');
-  // id
-};
-
-const orderUpdate = (req, res) => {
-  res.status(201).send('Você esta na rota de orders com id e esta realizando um get');
-  // id
+const orderDelete = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await db.Orders.destroy({ where: { id: Number(id) } });
+    return res.status(200).json({ message: `Pedido com id ${id} deletado` });
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
 };
 
 module.exports = {
-  ordersGetAll, ordersPost, orderDelete, orderGet, orderUpdate,
+  ordersGetAll, ordersPost, orderDelete, orderGet,
 };
-
-// const getOrdersExample = (req, res) => {
-//   res.send('Request getProductsExample feita');
-// };
-
-// const getOtherOrdersExample = (req, res) => {
-//   res.send('Request getOtherProductsExample feita');
-// };
-
-// module.exports = { getOrdersExample, getOtherOrdersExample };
