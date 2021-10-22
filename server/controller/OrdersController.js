@@ -33,6 +33,7 @@ const ordersPost = async (req, res) => {
   } catch (error) {
     return res.status(500).json(error.message);
   }
+  // como adicionar os produtos??? usar um get para os produtos e adicionar numa array?
 };
 
 const orderDelete = async (req, res) => {
