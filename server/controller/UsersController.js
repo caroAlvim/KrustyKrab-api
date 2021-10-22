@@ -16,9 +16,9 @@ const getUserById = async (req, res) => {
       where: { id: Number(id) },
       attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
     });
-    // if (!getUser) {
-    //   return res.status(200).json('Usuário não encontrado');
-    // }
+    if (getUser === null) {
+      return res.status(200).json({ message: 'Usuário não encontrado' });
+    }
     return res.status(200).json(getUser);
   } catch (error) {
     return res.status(500).json(error.message);

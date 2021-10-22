@@ -16,9 +16,9 @@ const orderGet = async (req, res) => {
       where: { id: Number(id) },
       attributes: { exclude: ['createdAt', 'updatedAt'] },
     });
-    // if (!getOrders) {
-    //   return res.status(200).json({ message: 'Produto não encontrado'});
-    // }
+    if (getOrders === null) {
+      return res.status(200).json({ message: 'Pedido não encontrado' });
+    }
     return res.status(200).json(getOrders);
   } catch (error) {
     return res.status(500).json(error.message);
