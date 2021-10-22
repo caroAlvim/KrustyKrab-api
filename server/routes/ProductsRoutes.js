@@ -6,8 +6,8 @@ const {
 const router = Router();
 
 router.get('/', productsGetAll);
-router.post('/', productsPost);
 router.get('/:id', getProductById);
+router.post('/', productsPost);
 router.put('/:id', updateProducts);
 router.delete('/:id', productsDelete);
 
