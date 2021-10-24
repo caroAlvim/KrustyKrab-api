@@ -27,8 +27,10 @@ const orderGet = async (req, res) => {
 
 const ordersPost = async (req, res) => {
   const newOrder = req.body;
+  // const { name, email, password, role, restaurant } = req.body;
   try {
     const creatingNewOrder = await db.Orders.create(newOrder);
+    // requisicao para os produtos
     return res.status(200).json(creatingNewOrder);
   } catch (error) {
     return res.status(500).json(error.message);

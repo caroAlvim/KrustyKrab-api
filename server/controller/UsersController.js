@@ -1,15 +1,16 @@
+const bcrypt = require('bcrypt');
 const db = require('../db/models');
 
-const usersGetAll = async (req, res) => {
+const usersGetAll = async (req, res, next) => {
   const getUsers = await db.Users.findAll();
   try {
     return res.status(200).json(getUsers);
   } catch (error) {
-    return res.status(500).json(error.message);
+    next(error);
   }
 };
 
-const getUserById = async (req, res) => {
+const getUserById = async (req, res, next) => {
   const { id } = req.params;
   try {
     const getUser = await db.Users.findOne({
@@ -21,21 +22,27 @@ const getUserById = async (req, res) => {
     }
     return res.status(200).json(getUser);
   } catch (error) {
-    return res.status(500).json(error.message);
+    next(error);
   }
 };
 
-const usersPost = async (req, res) => {
-  const newUser = req.body;
+const usersPost = async (req, res, next) => {
+  const newUser = {
+    name: req.body.name.trim(),
+    email: req.body.email.toLowerCase().trim(),
+    password: bcrypt.hashSync(req.body.password, 12).trim(),
+    role: req.body.role.trim(),
+    restaurant: req.body.trim(),
+  };
   try {
     const creatingNewUser = await db.Users.create(newUser);
     return res.status(200).json(creatingNewUser);
   } catch (error) {
-    return res.status(500).json(error.message);
+    next(error);
   }
 };
 
-const updateUser = async (req, res) => {
+const updateUser = async (req, res, next) => {
   const { id } = req.params;
   const updateUser = req.body;
   try {
@@ -46,17 +53,17 @@ const updateUser = async (req, res) => {
     });
     return res.status(200).json(userUpdated);
   } catch (error) {
-    return res.status(500).json(error.message);
+    next(error);
   }
 };
 
-const usersDelete = async (req, res) => {
+const usersDelete = async (req, res, next) => {
   const { id } = req.params;
   try {
     await db.Users.destroy({ where: { id: Number(id) } });
     return res.status(200).json({ message: `id ${id} deletado` });
   } catch (error) {
-    return res.status(500).json(error.message);
+    next(error);
   }
 };
 
