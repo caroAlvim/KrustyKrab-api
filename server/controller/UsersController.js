@@ -32,7 +32,7 @@ const usersPost = async (req, res, next) => {
     email: req.body.email.toLowerCase().trim(),
     password: bcrypt.hashSync(req.body.password, 12).trim(),
     role: req.body.role.trim(),
-    restaurant: req.body.trim(),
+    restaurant: req.body.restaurant.trim(),
   };
   try {
     const creatingNewUser = await db.Users.create(newUser);

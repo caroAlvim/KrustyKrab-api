@@ -1,15 +1,15 @@
 const db = require('../db/models');
 
-const productsGetAll = async (req, res) => {
+const productsGetAll = async (req, res, next) => {
   const getProducts = await db.Products.findAll();
   try {
     return res.status(200).json(getProducts);
   } catch (error) {
-    return res.status(500).json(error.message);
+    next(error);
   }
 };
 
-const getProductById = async (req, res) => {
+const getProductById = async (req, res, next) => {
   const { id } = req.params;
   try {
     const getProducts = await db.Products.findOne({
@@ -21,21 +21,29 @@ const getProductById = async (req, res) => {
     }
     return res.status(200).json(getProducts);
   } catch (error) {
-    return res.status(500).json(error.message);
+    next(error);
   }
 };
 
-const productsPost = async (req, res) => {
-  const newProduct = req.body;
+const productsPost = async (req, res, next) => {
+  const newProduct = {
+    name: req.body.name.trim(),
+    price: req.body.price.trim(),
+    flavor: req.body.flavor.trim(),
+    complement: req.body.complement.trim(),
+    type: req.body.type.trim(),
+    sub_type: req.body.sub_type.trim(),
+  };
+
   try {
     const creatingNewProduct = await db.Products.create(newProduct);
     return res.status(200).json(creatingNewProduct);
   } catch (error) {
-    return res.status(500).json(error.message);
+    next(error);
   }
 };
 
-const updateProducts = async (req, res) => {
+const updateProducts = async (req, res, next) => {
   const { id } = req.params;
   const updateProduct = req.body;
   try {
@@ -46,17 +54,17 @@ const updateProducts = async (req, res) => {
     });
     return res.status(200).json(productUpdated);
   } catch (error) {
-    return res.status(500).json(error.message);
+    next(error);
   }
 };
 
-const productsDelete = async (req, res) => {
+const productsDelete = async (req, res, next) => {
   const { id } = req.params;
   try {
     await db.Products.destroy({ where: { id: Number(id) } });
     return res.status(200).json({ message: `Produto com id ${id} deletado` });
   } catch (error) {
-    return res.status(500).json(error.message);
+    next(error);
   }
 };
 

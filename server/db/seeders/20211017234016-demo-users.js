@@ -6,7 +6,7 @@ module.exports = {
     {
       name: 'John Doe',
       email: 'john@mail.com',
-      password: bcrypt.hashSync('123456', 10),
+      password: bcrypt.hashSync('123456', 12),
       role: 'cozinha',
       restaurant: 'abc',
       createdAt: new Date(),
@@ -15,7 +15,7 @@ module.exports = {
     {
       name: 'Mari',
       email: 'maryk@mail.com',
-      password: bcrypt.hashSync('123456', 10),
+      password: bcrypt.hashSync('123456', 12),
       role: 'salao',
       restaurant: 'abcd',
       createdAt: new Date(),
@@ -24,7 +24,7 @@ module.exports = {
     {
       name: 'Peter',
       email: 'peter@mail.com',
-      password: bcrypt.hashSync('123456', 10),
+      password: bcrypt.hashSync('123456', 12),
       role: 'cozinha',
       restaurant: 'abc',
       createdAt: new Date(),
@@ -33,7 +33,7 @@ module.exports = {
     {
       name: 'Kate',
       email: 'kate@mail.com',
-      password: bcrypt.hashSync('123456', 10),
+      password: bcrypt.hashSync('123456', 12),
       role: 'salao',
       restaurant: 'abc',
       createdAt: new Date(),
@@ -42,7 +42,7 @@ module.exports = {
     {
       name: 'Jack',
       email: 'jack@mail.com',
-      password: bcrypt.hashSync('123456', 10),
+      password: bcrypt.hashSync('123456', 12),
       role: 'salao',
       restaurant: 'abc',
       createdAt: new Date(),
@@ -51,7 +51,7 @@ module.exports = {
     {
       name: 'Leo',
       email: 'leo@mail.com',
-      password: bcrypt.hashSync('123456', 10),
+      password: bcrypt.hashSync('123456', 12),
       role: 'cozinha',
       restaurant: 'abc',
       createdAt: new Date(),
@@ -60,7 +60,7 @@ module.exports = {
     {
       name: 'Julia',
       email: 'julia@mail.com',
-      password: bcrypt.hashSync('123456', 10),
+      password: bcrypt.hashSync('123456', 12),
       role: 'cozinha',
       restaurant: 'abc',
       createdAt: new Date(),
