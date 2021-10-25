@@ -23,7 +23,7 @@ const orderGet = async (req, res, next) => {
       where: { id: Number(id) },
       attributes: { exclude: ['createdAt', 'updatedAt'] },
       include: [{
-        model: Products, as: 'Products', attributes: ['id', 'name', 'price', 'flavor', 'complement', 'type', 'sub_type'], through: { attributes: ['qtd'], as: 'details' },
+        model: Products, as: 'Products', attributes: ['id', 'name', 'price', 'flavor', 'complement', 'type', 'sub_type'],
       }],
 
     });
