@@ -6,10 +6,10 @@ module.exports = (sequelize, DataTypes) => {
   class Orders extends Model {
     static associate(models) {
       // Orders.hasMany(models.ProductsOrders, { foreignKey: 'order_id', as: 'order' });
-      Orders.belongsTo(models.Users, { foreignKey: 'user_id', as: 'user' }); // to many users?
+      // Orders.belongsTo(models.Users, { foreignKey: 'user_id', as: 'user' }); // to many users?
       Orders.belongsToMany(models.Products, {
         through: 'ProductsOrders',
-        as: 'products',
+        as: 'Products',
         foreignKey: 'order_id',
       });
     }

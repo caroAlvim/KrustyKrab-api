@@ -1,11 +1,11 @@
 const db = require('../db/models');
 
-const { productsOrders } = db;
+const { Products } = db;
 
 const ordersGetAll = async (req, res, next) => {
   const getOrders = await db.Orders.findAll({
     include: [{
-      model: productsOrders, as: 'Products', attributes: ['id', 'name', 'complement', 'qtd'],
+      model: Products, as: 'Products', attributes: ['id', 'name', 'price', 'flavor', 'complement', 'type', 'sub_type'],
     }],
 
   });
@@ -22,6 +22,10 @@ const orderGet = async (req, res, next) => {
     const getOrders = await db.Orders.findOne({
       where: { id: Number(id) },
       attributes: { exclude: ['createdAt', 'updatedAt'] },
+      include: [{
+        model: Products, as: 'Products', attributes: ['id', 'name', 'price', 'flavor', 'complement', 'type', 'sub_type'],
+      }],
+
     });
     if (getOrders === null) {
       return res.status(200).json({ message: 'Pedido não encontrado' });
