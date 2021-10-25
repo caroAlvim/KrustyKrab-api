@@ -1,47 +1,61 @@
 const db = require('../db/models');
 
-const ordersGetAll = async (req, res) => {
-  const getOrders = await db.Orders.findAll();
+const { Products } = db;
+
+const ordersGetAll = async (req, res, next) => {
+  const getOrders = await db.Orders.findAll({
+    include: [{
+      model: Products, as: 'Products', attributes: ['id', 'name', 'price', 'flavor', 'complement', 'type', 'sub_type'],
+    }],
+
+  });
   try {
     return res.status(200).json(getOrders);
   } catch (error) {
-    return res.status(500).json(error.message);
+    next(error);
   }
 };
 
-const orderGet = async (req, res) => {
+const orderGet = async (req, res, next) => {
   const { id } = req.params;
   try {
     const getOrders = await db.Orders.findOne({
       where: { id: Number(id) },
       attributes: { exclude: ['createdAt', 'updatedAt'] },
+      include: [{
+        model: Products, as: 'Products', attributes: ['id', 'name', 'price', 'flavor', 'complement', 'type', 'sub_type'],
+      }],
+
     });
     if (getOrders === null) {
       return res.status(200).json({ message: 'Pedido não encontrado' });
     }
     return res.status(200).json(getOrders);
   } catch (error) {
-    return res.status(500).json(error.message);
+    next(error);
   }
 };
 
-const ordersPost = async (req, res) => {
+const ordersPost = async (req, res, next) => {
   const newOrder = req.body;
+  // const { name, email, password, role, restaurant } = req.body;
   try {
     const creatingNewOrder = await db.Orders.create(newOrder);
+    // requisicao para os produtos
     return res.status(200).json(creatingNewOrder);
   } catch (error) {
-    return res.status(500).json(error.message);
+    next(error);
   }
+  // como adicionar os produtos??? usar um get para os produtos e adicionar numa array?
 };
 
-const orderDelete = async (req, res) => {
+const orderDelete = async (req, res, next) => {
   const { id } = req.params;
   try {
     await db.Orders.destroy({ where: { id: Number(id) } });
     return res.status(200).json({ message: `Pedido com id ${id} deletado` });
   } catch (error) {
-    return res.status(500).json(error.message);
+    next(error);
   }
 };
 

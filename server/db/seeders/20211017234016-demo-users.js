@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
+const bcrypt = require('bcrypt');
+
 module.exports = {
   up: async (queryInterface, Sequelize) => queryInterface.bulkInsert('Users', [
     {
       name: 'John Doe',
       email: 'john@mail.com',
-      password: '123456',
+      password: bcrypt.hashSync('123456', 12),
       role: 'cozinha',
       restaurant: 'abc',
       createdAt: new Date(),
@@ -13,7 +15,7 @@ module.exports = {
     {
       name: 'Mari',
       email: 'maryk@mail.com',
-      password: '123456',
+      password: bcrypt.hashSync('123456', 12),
       role: 'salao',
       restaurant: 'abcd',
       createdAt: new Date(),
@@ -22,7 +24,7 @@ module.exports = {
     {
       name: 'Peter',
       email: 'peter@mail.com',
-      password: '123456',
+      password: bcrypt.hashSync('123456', 12),
       role: 'cozinha',
       restaurant: 'abc',
       createdAt: new Date(),
@@ -31,7 +33,7 @@ module.exports = {
     {
       name: 'Kate',
       email: 'kate@mail.com',
-      password: '123456',
+      password: bcrypt.hashSync('123456', 12),
       role: 'salao',
       restaurant: 'abc',
       createdAt: new Date(),
@@ -40,7 +42,7 @@ module.exports = {
     {
       name: 'Jack',
       email: 'jack@mail.com',
-      password: '123456',
+      password: bcrypt.hashSync('123456', 12),
       role: 'salao',
       restaurant: 'abc',
       createdAt: new Date(),
@@ -49,7 +51,7 @@ module.exports = {
     {
       name: 'Leo',
       email: 'leo@mail.com',
-      password: '123456',
+      password: bcrypt.hashSync('123456', 12),
       role: 'cozinha',
       restaurant: 'abc',
       createdAt: new Date(),
@@ -58,7 +60,7 @@ module.exports = {
     {
       name: 'Julia',
       email: 'julia@mail.com',
-      password: '123456',
+      password: bcrypt.hashSync('123456', 12),
       role: 'cozinha',
       restaurant: 'abc',
       createdAt: new Date(),
