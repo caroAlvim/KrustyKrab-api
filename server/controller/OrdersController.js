@@ -23,7 +23,7 @@ const orderGet = async (req, res, next) => {
       where: { id: Number(id) },
       attributes: { exclude: ['createdAt', 'updatedAt'] },
       include: [{
-        model: Products, as: 'Products', attributes: ['id', 'name', 'price', 'flavor', 'complement', 'type', 'sub_type'],
+        model: Products, as: 'Products', attributes: ['id', 'name', 'price', 'flavor', 'complement', 'type', 'sub_type'], through: { attributes: ['qtd'], as: 'details' },
       }],
 
     });
@@ -37,16 +37,20 @@ const orderGet = async (req, res, next) => {
 };
 
 const ordersPost = async (req, res, next) => {
-  const newOrder = req.body;
-  // const { name, email, password, role, restaurant } = req.body;
+  const newOrder = {
+    name: req.body.name.trim(),
+    price: req.body.price.trim(),
+    flavor: req.body.flavor.trim(),
+    complement: req.body.complement.trim(),
+    type: req.body.type.trim(),
+    sub_type: req.body.sub_type.trim(),
+  };
   try {
     const creatingNewOrder = await db.Orders.create(newOrder);
-    // requisicao para os produtos
     return res.status(200).json(creatingNewOrder);
   } catch (error) {
     next(error);
   }
-  // como adicionar os produtos??? usar um get para os produtos e adicionar numa array?
 };
 
 const orderDelete = async (req, res, next) => {
