@@ -5,7 +5,7 @@ const { Products } = db;
 const ordersGetAll = async (req, res, next) => {
   const getOrders = await db.Orders.findAll({
     include: [{
-      model: Products, as: 'Products', attributes: ['id', 'name', 'price', 'flavor', 'complement', 'type', 'sub_type'],
+      model: Products, as: 'Products', attributes: ['id', 'name', 'price', 'flavor', 'complement', 'type', 'sub_type'], through: { attributes: ['qtd'], as: 'details' },
     }],
 
   });
