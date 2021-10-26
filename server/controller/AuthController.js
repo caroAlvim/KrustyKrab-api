@@ -24,7 +24,6 @@ const login = async (req, res, next) => {
       return res.status(401).json({ error: 'Invalid e-mail or password' });
     }
 
-    // generate & sign token
     const jwtPayload = {
       email: getUser.email,
       name: getUser.name,
