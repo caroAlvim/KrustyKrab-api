@@ -25,7 +25,11 @@ const login = async (req, res, next) => {
     }
 
     // generate & sign token
-    const jwtPayload = { email: getUser.email };
+    const jwtPayload = {
+      email: getUser.email,
+      name: getUser.name,
+      restaurant: getUser.restaurant,
+    };
     const token = jwt.sign(jwtPayload, process.env.JWT_SECRET);
 
     return res.status(200).json({ token });
