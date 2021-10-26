@@ -13,7 +13,6 @@ const login = async (req, res, next) => {
     const getUser = await db.Users.findOne({
       where: {
         email,
-        password,
       },
     });
 

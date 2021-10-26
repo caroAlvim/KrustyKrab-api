@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const db = require('../db/models');
 
 const usersGetAll = async (req, res, next) => {
@@ -36,7 +37,15 @@ const usersPost = async (req, res, next) => {
   };
   try {
     const creatingNewUser = await db.Users.create(newUser);
-    return res.status(200).json(creatingNewUser);
+
+    const jwtPayload = {
+      email: creatingNewUser.email,
+      name: creatingNewUser.name,
+      restaurant: creatingNewUser.restaurant,
+    };
+    const token = jwt.sign(jwtPayload, process.env.JWT_SECRET);
+
+    return res.status(200).json({ token });
   } catch (error) {
     next(error);
   }
