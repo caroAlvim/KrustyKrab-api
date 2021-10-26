@@ -15,10 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Orders.init({
-    // user_id: DataTypes.INTEGER, // tá certo?
     client_name: DataTypes.STRING,
     table: DataTypes.INTEGER,
-    // details: DataTypes.TEXT,
     status: DataTypes.STRING,
   }, {
     sequelize,

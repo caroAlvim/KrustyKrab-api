@@ -16,6 +16,7 @@ module.exports = {
       price: 7,
       flavor: null,
       complement: null,
+      image: null,
       type: 'breakfast',
       sub_type: 'breakfast',
       createdAt: new Date(),
@@ -26,6 +27,7 @@ module.exports = {
       price: 7,
       flavor: null,
       complement: null,
+      image: null,
       type: 'breakfast',
       sub_type: 'breakfast',
       createdAt: new Date(),
@@ -36,6 +38,7 @@ module.exports = {
       price: 10,
       flavor: 'carne',
       complement: null,
+      image: null,
       type: 'all-day',
       sub_type: 'hamburguer',
       createdAt: new Date(),
@@ -46,6 +49,18 @@ module.exports = {
       price: 10,
       flavor: 'frango',
       complement: 'ovo',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/4/41/Coffee_with_milk_%28563800%29.jpg',
+      type: 'all-day',
+      sub_type: 'hamburguer',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      name: 'Crabby Patty',
+      price: 15,
+      flavor: 'Crab',
+      complement: 'eggs fish',
+      image: null,
       type: 'all-day',
       sub_type: 'hamburguer',
       createdAt: new Date(),
@@ -57,5 +72,3 @@ module.exports = {
     await queryInterface.bulkDelete('Products', null, {});
   },
 };
-
-// "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Coffee_with_milk_%28563800%29.jpg",

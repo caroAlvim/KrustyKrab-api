@@ -5,7 +5,6 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Products extends Model {
     static associate(models) {
-      // Products.hasMany(models.Orders)
       Products.belongsToMany(models.Orders, {
         through: 'ProductsOrders',
         as: 'orders',
@@ -18,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     price: DataTypes.DECIMAL,
     flavor: DataTypes.STRING,
     complement: DataTypes.STRING,
+    image: DataTypes.STRING,
     type: DataTypes.STRING,
     sub_type: DataTypes.STRING,
   }, {

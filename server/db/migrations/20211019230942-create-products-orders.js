@@ -12,13 +12,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: 'Orders', key: 'id' },
-        unique: false, // será q precisa?
+        unique: false,
       },
       product_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: 'Products', key: 'id' },
-        unique: false, // será q precisa?
+        unique: false,
       },
       qtd: {
         allowNull: false,
