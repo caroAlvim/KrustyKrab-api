@@ -1,6 +1,6 @@
 # Krusty Krab - API com Node.js
 
-Krusty Krab API  - é uma aplicação 
+Krusty Krab API  - é uma API Rest desenvolvida para administrar os dados de um restaurante. Neste projeto utilizamos NodeJs, PostgreSQL, Express e Sequelize. Para a segurançao do nosso banco, foram utilizados Bcrypt para proteção da senha do usuário e sistema de autenticação utilizando a criação de token JWT.
 
 Para visualizar, acesse [aqui](https://krusty-krab-api.herokuapp.com/docs/) 
 
@@ -31,9 +31,16 @@ Um pequeno restaurante de hamburgueres, que está crescendo, necessita de um sis
 
 A interface front-end da aplicação Burger Queen já foi criado e pode ser visualizada [aqui](https://krusty-krab-restaurant.herokuapp.com/). Neste projeto criamos o back-end para manejar os dados. O projeto foi desenvolvido através de uma API rest compatível com as requisições vindas do front.
 
+
+## 2. Proposta do projeto
+
+O objetivo de aprendizagem principal é adquirir experiência com o **Node.js** como ferramenta para desenvolvimento de _aplicações de servidor_, junto com uma série de outras ferramentas comumente utilizadas nesse contexto (Express como framework, PostgreSQL como base de dados, containers de docker (Hacker Edition), etc).
+
+Neste projeto foi desenvolvido um servidor web que esta _servindo_ `JSON` através de uma conexão `HTTP`, e implantado em um servidor na nuvem.
+
 ### Hacker Edition
 
-Para a `Hacker edition` 
+Neste projeto também foi desenvolvido os desafios da `Hacker edition`, que são: 
 
 * Criptografar senha do usuário
 * Endpoint de autenticação: `POST /auth`
@@ -59,13 +66,6 @@ Um cliente que enviará uma requisição HTTP ao endpoint de autenticação de u
 Foi utilizado o [Swagger](https://swagger.io/docs/specification/about/) para escrever a sua própria documentação
 
 
-## 2. Proposta do projeto
-
-O objetivo de aprendizagem principal é adquirir experiência com o **Node.js** como ferramenta para desenvolvimento de _aplicações de servidor_, junto com uma série de outras ferramentas comumente utilizadas nesse contexto (Express como framework, PostgreSQL como base de dados, containers de docker (Hacker Edition), etc).
-
-Neste projeto foi desenvolvido um servidor web que esta _servindo_ `JSON` através de uma conexão `HTTP`, e implantado em um servidor na nuvem.
-
-
 
 ## 3. Diagrama Entidade Relacionamento
 
@@ -79,7 +79,7 @@ Em engenharia de software, um modelo entidade relacionamento (MER) é um modelo 
 
 ## 4. Endpoints
 
-Conforme o desafio estabelecido, a API possui os seguintes endpoints:
+Conforme o desafio estabelecido no desenvolvimento do desajio, a API possui os seguintes endpoints:
 
 #### 4.1.1 `/users`
 
@@ -129,8 +129,5 @@ Conforme o desafio estabelecido, a API possui os seguintes endpoints:
 </div><br>
 
 ## 
-<div align='center'>
 
-<h4> Desenvolvido por <a href="https://github.com/caroAlvim"> Carolina Alvim 💻 </h4><br>
-
-</div>
+Desenvolvido por [Carolina Alvim](https://github.com/caroAlvim) 💻 
