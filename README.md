@@ -38,6 +38,7 @@ O objetivo de aprendizagem principal é adquirir experiência com o **Node.js** 
 
 Neste projeto foi desenvolvido um servidor web que esta _servindo_ `JSON` através de uma conexão `HTTP`, e implantado em um servidor na nuvem.
 
+
 ### Hacker Edition
 
 Neste projeto também foi desenvolvido os desafios da `Hacker edition`, que são: 
@@ -47,6 +48,7 @@ Neste projeto também foi desenvolvido os desafios da `Hacker edition`, que são
 * Middleware de autenticação - criação e verificação do token
 * Criar a documentação da API
 
+
 #### Criptografar senha do usuário
 
 É uma boa prática **NÃO** armazenar a senha do seu usuário no seu banco de dados, pois colocaria a segurança de seu usuário em risco. Assim, ao invés de armazená-la como um simples string, foi armazenada uma `hash` criptografada. Para isso,
@@ -55,16 +57,17 @@ utilizou-se o [bcryptjs](https://www.npmjs.com/package/bcryptjs).
 Assim, na autenticação (`POST /auth`), se a senha do usuário está certa ou não, poderá ser feita
 comparando essa `hash`.
 
+
 #### Criar token de autenticação JWT
 
 JWT (JSON Web Token) é um método RCT 7519 padrão da indústria para realizar autenticação entre duas partes por meio de um token assinado que autentica uma requisição web. Esse token é um código em Base64 que armazena objetos JSON com os dados que permitem a autenticação da requisição.
 
 Um cliente que enviará uma requisição HTTP ao endpoint de autenticação de uma API. Nela o cliente envia, no corpo da requisição dados como endereço de e-mail e senha. [Fonte](https://www.devmedia.com.br/como-o-jwt-funciona/40265).
 
+
 #### Criar a documentação da API
 
-Foi utilizado o [Swagger](https://swagger.io/docs/specification/about/) para escrever a sua própria documentação
-
+Foi utilizado o [Swagger](https://swagger.io/docs/specification/about/) para escrever a documentação.
 
 
 ## 3. Diagrama Entidade Relacionamento
@@ -130,4 +133,4 @@ Conforme o desafio estabelecido no desenvolvimento do desajio, a API possui os s
 
 ## 
 
-Desenvolvido por [Carolina Alvim](https://github.com/caroAlvim) 💻 
+💻  Desenvolvido por [Carolina Alvim](https://github.com/caroAlvim) 
