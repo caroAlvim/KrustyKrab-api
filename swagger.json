@@ -1,0 +1,910 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Krusty Krab API",
+        "description": "House of Crabby Patty" ,
+        "termsOfService": "https://smartbear.com/terms-of-use/",
+        "contact": {
+            "url": "https://github.com/caroAlvim/",
+            "email" : "caro.alvim@gmail.com"
+        },
+        "license": {
+          "name": "Copyright ©",
+          "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+      },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://krusty-krab-api.herokuapp.com/",
+            "description": "House of Crabby Patty"
+        }
+    ],
+    "host": "https://krusty-krab-api.herokuapp.com",
+    "paths": {
+        "/auth": {
+          "post": {
+            "summary": "Create a token",
+            "description": "Create a token for a registered user",
+            "tags": ["Auth"],
+            "parameters": [
+                {
+                    "name": "User",
+                    "in": "body",
+                    "description": "Create a token",
+                    "required": true,
+                    "schema":{
+                        "type":"object",
+                        "properties":{
+                            "email":{
+                                "type":"string"
+                            },
+                            "password":{
+                                "type":"string"
+                            }
+                        }
+                    }
+                    
+                }
+            ], 
+            "responses": {
+              "200": {
+                "description": "Successful operation",
+                "content": {
+                    "aplication/json":{
+                        "schema": {
+                            "items": {
+                                "$ref": "#/components/schemas/authToken"
+                            }
+                        }
+                    }
+                }
+              },
+              "400": {
+                "description": "Invalid email or password",
+                "content": {
+                    "aplication/json":{
+                        "schema": {
+                            "items": {
+                                "$ref": "#/components/schemas/Error"
+                            }
+                        }
+                    }
+                }
+              }
+            }
+          }
+        },
+        "/users": {
+            "get": {
+                "summary": "Get all users",
+                "description": "List all registered users",
+                "tags": ["Users"],
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                      "description": "Successful operation",
+                      "content": {
+                          "aplication/json":{
+                              "schema": {
+                                  "items": {
+                                      "$ref": "#/components/schemas/Users"
+                                  }
+                              }
+                          }
+                      }
+                    },
+                    "400":{
+                        "description": "Invalid token or not authorized",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref":"#/components/schemas/Error"
+                                    }
+                                }
+                            }
+                        }
+                    } 
+                }
+            },
+            "post":{
+                "summary": "Create new user",
+                "description": "Create new user",
+                "tags": ["Users"],
+                "parameters": [
+                    {
+                        "name": "New user",
+                        "in": "body",
+                        "description": "Create a token",
+                        "required": true,
+                        "type":"object",
+                        "schema":{
+                            "items": {
+                                "$ref":"#/components/schemas/createUser"
+                            }
+                        }
+                    }
+                ], 
+                "responses": {
+                    "200": {
+                      "description": "Successful operation",
+                      "content": {
+                          "aplication/json":{
+                              "schema": {
+                                  "items": {
+                                      "$ref": "#/components/schemas/authToken"
+                                  }
+                              }
+                          }
+                      }
+                    },
+                    "400":{
+                        "description": "Invalid token or not authorized",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref":"#/components/schemas/Error"
+                                    }
+                                }
+                            }
+                        }
+                    } 
+                }
+            
+            }
+        },
+        "/users/{id}": {
+            "get":{
+                "summary": "Get user by id",
+                "description": "Find user by Id",
+                "tags": ["Users"],
+                "security":[{"bearerAuth": []}],
+                "parameters":[
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Search by Id",
+                        "required": true,
+                        "schema":{
+                            "type":"integer"
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Successful operation",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref":"#/components/schemas/Users"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Invalid token or not authorized",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref": "#/components/schemas/Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Change user by id",
+                "description": "Change user by Id",
+                "tags": ["Users"],
+                "security":[{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Search by Id",
+                        "required": true,
+                        "schema":{
+                            "type":"integer"
+                        }        
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Users"
+                            }
+                           
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"Successful operation",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref":"#/components/schemas/Users"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Invalid token or not authorized",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref": "#/components/schemas/Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "summary": "Delete a user",
+                "description": "Delete a user",
+                "tags": ["Users"],
+                "security":[{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Search by Id",
+                        "required": true,
+                        "schema":{
+                            "type":"integer"
+                        }
+                        
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Users"
+                            }
+                           
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"Successful operation",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref":"#/components/schemas/Users"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Invalid token or not authorized",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref": "#/components/schemas/Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/products": {
+            "get": {
+                "summary": "Get all products",
+                "description": "List all products",
+                "tags": ["Products"],
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                      "description": "Successful operation",
+                      "content": {
+                          "aplication/json":{
+                              "schema": {
+                                  "items": {
+                                      "$ref": "#/components/schemas/Products"
+                                  }
+                              }
+                          }
+                      }
+                    },
+                    "400":{
+                        "description": "Invalid token or not authorized",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref":"#/components/schemas/Error"
+                                    }
+                                }
+                            }
+                        }
+                    } 
+                }
+            },
+            "post":{
+                "summary": "Create new product",
+                "description": "Create new product",
+                "tags": ["Products"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "New product",
+                        "in": "body",
+                        "description": "Create a new product",
+                        "required": true,
+                        "type":"object",
+                        "schema":{
+                            "items": {
+                                "$ref":"#/components/schemas/createProduct"
+                            }
+                        }
+                    }
+                ], 
+                "responses": {
+                    "200": {
+                      "description": "Successful operation",
+                      "content": {
+                          "aplication/json":{
+                              "schema": {
+                                  "items": {
+                                      "$ref": "#/components/schemas/Products"
+                                  }
+                              }
+                          }
+                      }
+                    },
+                    "400":{
+                        "description": "Invalid token or not authorized",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref":"#/components/schemas/Error"
+                                    }
+                                }
+                            }
+                        }
+                    } 
+                }
+            
+            }
+        },
+        "/products/{id}": {
+            "get":{
+                "summary": "Get a product by id",
+                "description": "Find a product by Id",
+                "tags": ["Products"],
+                "security":[{"bearerAuth": []}],
+                "parameters":[
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Search by Id",
+                        "required": true,
+                        "schema":{
+                            "type":"integer"
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Successful operation",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref":"#/components/schemas/Products"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Invalid token or not authorized",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref": "#/components/schemas/Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Change products by id",
+                "description": "Change products by Id",
+                "tags": ["Products"],
+                "security":[{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Search by Id",
+                        "required": true,
+                        "schema":{
+                            "type":"integer"
+                        }
+                        
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Successful operation",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref":"#/components/schemas/Users"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Invalid token or not authorized",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref": "#/components/schemas/Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "summary": "Delete a product",
+                "description": "Delete a product",
+                "tags": ["Products"],
+                "security":[{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Search by Id",
+                        "required": true,
+                        "schema":{
+                            "type":"integer"
+                        }
+                        
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Users"
+                            }
+                           
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"Successful operation",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref":"#/components/schemas/Users"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Invalid token or not authorized",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref": "#/components/schemas/Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/orders": {
+            "get": {
+                "summary": "Get all orders",
+                "description": "List all orders",
+                "tags": ["Orders"],
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                      "description": "Successful operation",
+                      "content": {
+                          "aplication/json":{
+                              "schema": {
+                                  "items": {
+                                      "$ref": "#/components/schemas/Orders"
+                                  }
+                              }
+                          }
+                      }
+                    },
+                    "400":{
+                        "description": "Invalid token or not authorized",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref":"#/components/schemas/Error"
+                                    }
+                                }
+                            }
+                        }
+                    } 
+                }
+            },
+            "post":{
+                "summary": "Create new order",
+                "description": "Create new order",
+                "tags": ["Orders"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "New Order",
+                        "in": "body",
+                        "description": "Create a new order",
+                        "required": true,
+                        "type":"object",
+                        "schema":{
+                            "items": {
+                                "$ref":"#/components/schemas/createOrder"
+                            }
+                        }
+                    }
+                ], 
+                "responses": {
+                    "200": {
+                      "description": "Successful operation",
+                      "content": {
+                          "aplication/json":{
+                              "schema": {
+                                  "items": {
+                                      "$ref": "#/components/schemas/Orders"
+                                  }
+                              }
+                          }
+                      }
+                    },
+                    "400":{
+                        "description": "Invalid token or not authorized",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref":"#/components/schemas/Error"
+                                    }
+                                }
+                            }
+                        }
+                    } 
+                }
+            
+            }
+        },
+        "/orders/{id}": {
+            "get":{
+                "summary": "Get a order by id",
+                "description": "Find a order by Id",
+                "tags": ["Orders"],
+                "security":[{"bearerAuth": []}],
+                "parameters":[
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Search by Id",
+                        "required": true,
+                        "schema":{
+                            "type":"integer"
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Successful operation",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref":"#/components/schemas/Orders"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Invalid token or not authorized",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref": "#/components/schemas/Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Change orders by id",
+                "description": "Change orders by Id",
+                "tags": ["Orders"],
+                "security":[{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "Order id",
+                        "in": "path",
+                        "description": "Search by Id",
+                        "type": "integer",
+                        "required": true 
+                    },
+                    {
+                        "name": "Status",
+                        "in":"body",
+                        "description": "New status",
+                        "required":true,
+                        "type": "object",
+                        "schema":{
+                            "type": "object",
+                            "properties":{
+                                "status":{
+                                    "type": "string",
+                                    "example": "pending"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Successful operation",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref":"#/components/schemas/Orders"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Invalid token or not authorized",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref": "#/components/schemas/Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "summary": "Delete a order",
+                "description": "Delete a order",
+                "tags": ["Orders"],
+                "security":[{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Search by Id",
+                        "required": true,
+                        "schema":{
+                            "type":"integer"
+                        }                       
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Successful operation",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref":"#/components/schemas/Orders"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Invalid token or not authorized",
+                        "content":{
+                            "aplication/json":{
+                                "schema":{
+                                    "items":{
+                                        "$ref": "#/components/schemas/Error"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }     
+    },
+    "components": {
+        "schemas": {
+            "Auth": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "createUser": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                       "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type":"string"
+                    },
+                    "restaurant": {
+                        "type": "string" 
+                    }
+                }
+            },
+            "authToken":{
+                "type":"object",
+                "properties":{
+                    "token": {
+                        "type": "string"
+                    }
+                }
+
+            },
+            "Users": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                       "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "string"
+                    },
+                    "restaurant": {
+                        "type": "string" 
+                    }    
+                }
+            },
+            "Products": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                       "type": "string"
+                    },
+                    "price": {
+                        "type": "string",
+                        "format": "decimal"
+                    },
+                    "flavor": {
+                        "type": "string"
+                    },
+                    "complement": {
+                        "type": "string" 
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type":"string"
+                    },
+                    "sub_type":{
+                        "type":"string"
+                    }   
+                }
+            },
+            "Orders": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "client_name": {
+                       "type": "string"
+                    },
+                    "user_id": {
+                        "type":"integer"
+                    },
+                    "table": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "type":"string"
+                    },
+                    "processedAt":{
+                        "type":"string",
+                        "format": "date"
+                    },
+                    "createdAt": {
+                        "type":"string",
+                        "format": "date"
+                    },
+                    "updatedAt": {
+                        "type":"string",
+                        "format": "date"
+                    },
+                    "Products": {
+                        "type":"array"
+                    }
+                }
+
+            },
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "Error": {
+                        "type": "string"
+                    },
+                    "message": {
+                       "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "beaterFormat": "JWT"
+            }
+        }
+    }
+}
+

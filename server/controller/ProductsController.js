@@ -32,6 +32,7 @@ const productsPost = async (req, res, next) => {
     flavor: req.body.flavor.trim(),
     complement: req.body.complement.trim(),
     type: req.body.type.trim(),
+    image: req.body.image.trim(),
     sub_type: req.body.sub_type.trim(),
   };
 
