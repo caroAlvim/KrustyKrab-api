@@ -20,33 +20,29 @@
             "description": "House of Crabby Patty"
         }
     ],
-    "host": "https://krusty-krab-api.herokuapp.com",
     "paths": {
         "/auth": {
           "post": {
             "summary": "Create a token",
             "description": "Create a token for a registered user",
             "tags": ["Auth"],
-            "parameters": [
-                {
-                    "name": "User",
-                    "in": "body",
-                    "description": "Create a token",
-                    "required": true,
-                    "schema":{
-                        "type":"object",
-                        "properties":{
-                            "email":{
-                                "type":"string"
-                            },
-                            "password":{
-                                "type":"string"
-                            }
+            "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "email": {
+                          "type": "string"
+                        },
+                        "password": {
+                          "type": "string"
                         }
+                      }
                     }
-                    
+                  }      
                 }
-            ], 
+            },   
             "responses": {
               "200": {
                 "description": "Successful operation",
@@ -112,20 +108,15 @@
                 "summary": "Create new user",
                 "description": "Create new user",
                 "tags": ["Users"],
-                "parameters": [
-                    {
-                        "name": "New user",
-                        "in": "body",
-                        "description": "Create a token",
-                        "required": true,
-                        "type":"object",
-                        "schema":{
-                            "items": {
-                                "$ref":"#/components/schemas/createUser"
-                            }
+                "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref":"#/components/schemas/createUser"
                         }
+                      }      
                     }
-                ], 
+                },   
                 "responses": {
                     "200": {
                       "description": "Successful operation",
@@ -219,7 +210,7 @@
                     "content": {
                         "aplication/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Users"
+                                "$ref": "#/components/schemas/createUser"
                             }
                            
                         }
@@ -269,16 +260,6 @@
                         
                     }
                 ],
-                "requestBody": {
-                    "content": {
-                        "aplication/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Users"
-                            }
-                           
-                        }
-                    }
-                },
                 "responses":{
                     "200":{
                         "description":"Successful operation",
@@ -345,20 +326,15 @@
                 "description": "Create new product",
                 "tags": ["Products"],
                 "security": [{ "bearerAuth": [] }],
-                "parameters": [
-                    {
-                        "name": "New product",
-                        "in": "body",
-                        "description": "Create a new product",
-                        "required": true,
-                        "type":"object",
-                        "schema":{
-                            "items": {
-                                "$ref":"#/components/schemas/createProduct"
-                            }
+                "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref":"#/components/schemas/createProducts"
                         }
+                      }      
                     }
-                ], 
+                },   
                 "responses": {
                     "200": {
                       "description": "Successful operation",
@@ -449,6 +425,16 @@
                         
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/createProducts"
+                            }
+                           
+                        }
+                    }
+                },
                 "responses":{
                     "200":{
                         "description":"Successful operation",
@@ -493,16 +479,6 @@
                         
                     }
                 ],
-                "requestBody": {
-                    "content": {
-                        "aplication/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Users"
-                            }
-                           
-                        }
-                    }
-                },
                 "responses":{
                     "200":{
                         "description":"Successful operation",
@@ -569,20 +545,15 @@
                 "description": "Create new order",
                 "tags": ["Orders"],
                 "security": [{ "bearerAuth": [] }],
-                "parameters": [
-                    {
-                        "name": "New Order",
-                        "in": "body",
-                        "description": "Create a new order",
-                        "required": true,
-                        "type":"object",
-                        "schema":{
-                            "items": {
-                                "$ref":"#/components/schemas/createOrder"
-                            }
+                "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref":"#/components/schemas/createOrders"
                         }
+                      }      
                     }
-                ], 
+                },  
                 "responses": {
                     "200": {
                       "description": "Successful operation",
@@ -668,24 +639,23 @@
                         "description": "Search by Id",
                         "type": "integer",
                         "required": true 
-                    },
-                    {
-                        "name": "Status",
-                        "in":"body",
-                        "description": "New status",
-                        "required":true,
-                        "type": "object",
-                        "schema":{
-                            "type": "object",
-                            "properties":{
-                                "status":{
-                                    "type": "string",
-                                    "example": "pending"
-                                }
-                            }
-                        }
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties":{
+                                     "status":{
+                                      "type": "string",
+                                      "example": "pending"
+                                    }
+                                }      
+                            } 
+                        }
+                    }
+                },
                 "responses":{
                     "200":{
                         "description":"Successful operation",
@@ -850,12 +820,73 @@
                     }   
                 }
             },
+            "createProducts": {
+                "type": "object",
+                "properties": {
+
+                    "name": {
+                       "type": "string"
+                    },
+                    "price": {
+                        "type": "string",
+                        "format": "decimal"
+                    },
+                    "flavor": {
+                        "type": "string"
+                    },
+                    "complement": {
+                        "type": "string" 
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type":"string"
+                    },
+                    "sub_type":{
+                        "type":"string"
+                    }   
+                }
+            },    
             "Orders": {
                 "type": "object",
                 "properties": {
                     "id": {
                         "type": "integer"
                     },
+                    "client_name": {
+                       "type": "string"
+                    },
+                    "user_id": {
+                        "type":"integer"
+                    },
+                    "table": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "type":"string"
+                    },
+                    "processedAt":{
+                        "type":"string",
+                        "format": "date"
+                    },
+                    "createdAt": {
+                        "type":"string",
+                        "format": "date"
+                    },
+                    "updatedAt": {
+                        "type":"string",
+                        "format": "date"
+                    },
+                    "Products": {
+                        "type":"array"
+                    }
+                }
+
+            },
+            "createOrders": {
+                "type": "object",
+                "properties": {
                     "client_name": {
                        "type": "string"
                     },

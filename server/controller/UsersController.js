@@ -3,7 +3,9 @@ const jwt = require('jsonwebtoken');
 const db = require('../db/models');
 
 const usersGetAll = async (req, res, next) => {
-  const getUsers = await db.Users.findAll();
+  const getUsers = await db.Users.findAll(
+    { attributes: { exclude: ['password', 'createdAt', 'updatedAt'] } },
+  );
   try {
     return res.status(200).json(getUsers);
   } catch (error) {
