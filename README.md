@@ -41,7 +41,7 @@ Neste projeto foi desenvolvido um servidor web que esta _servindo_ `JSON` atrav�
 
 ### * Hacker Edition
 
-Neste projeto também foi desenvolvido os desafios da `Hacker edition`, que são: 
+Neste projeto também foram desenvolvidos alguns dos desafios propostos para a `Hacker edition`. Os desafios concluídos foram:
 
 * Criptografar senha do usuário
 * Endpoint de autenticação: `POST /auth`
