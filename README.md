@@ -1,4 +1,4 @@
-# Krusty Krab - API com Node.js
+# The Krusty Krab - API com Node.js
 
 Krusty Krab API  - é uma API Rest desenvolvida para administrar os dados de um restaurante. Neste projeto utilizamos NodeJs, PostgreSQL, Express e Sequelize. Para a segurançao do nosso banco, foram utilizados Bcrypt para proteção da senha do usuário e sistema de autenticação utilizando a criação de token JWT. 
 
