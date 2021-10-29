@@ -1,17 +1,17 @@
 # Krusty Krab - API com Node.js
 
-Krusty Krab API  - é uma API Rest desenvolvida para administrar os dados de um restaurante. Neste projeto utilizamos NodeJs, PostgreSQL, Express e Sequelize. Para a segurançao do nosso banco, foram utilizados Bcrypt para proteção da senha do usuário e sistema de autenticação utilizando a criação de token JWT.
+Krusty Krab API  - é uma API Rest desenvolvida para administrar os dados de um restaurante. Neste projeto utilizamos NodeJs, PostgreSQL, Express e Sequelize. Para a segurançao do nosso banco, foram utilizados Bcrypt para proteção da senha do usuário e sistema de autenticação utilizando a criação de token JWT. 
 
-Para visualizar, acesse [aqui](https://krusty-krab-api.herokuapp.com/docs/) 
+Para visualizar, acesse [aqui.](https://krusty-krab-api.herokuapp.com/docs/) 
 
 <div align='center'>
  
   <h4> senha para acesso: </h4>
 
-> |      |          login          |     
-> |------|-------------------------|
-> |  📨  |  admin@krustyKrab.com   |
-> |  🔐  |         123456          |
+|      |          login          |     
+|------|-------------------------|
+|  📨  |  admin@krustyKrab.com   |
+|  🔐  |         123456          |
 
 </div>
 
@@ -39,7 +39,7 @@ O objetivo de aprendizagem principal é adquirir experiência com o **Node.js** 
 Neste projeto foi desenvolvido um servidor web que esta _servindo_ `JSON` através de uma conexão `HTTP`, e implantado em um servidor na nuvem.
 
 
-### Hacker Edition
+### * Hacker Edition
 
 Neste projeto também foi desenvolvido os desafios da `Hacker edition`, que são: 
 
@@ -49,7 +49,7 @@ Neste projeto também foi desenvolvido os desafios da `Hacker edition`, que são
 * Criar a documentação da API
 
 
-#### Criptografar senha do usuário
+#### * Criptografar senha do usuário
 
 É uma boa prática **NÃO** armazenar a senha do seu usuário no seu banco de dados, pois colocaria a segurança de seu usuário em risco. Assim, ao invés de armazená-la como um simples string, foi armazenada uma `hash` criptografada. Para isso,
 utilizou-se o [bcryptjs](https://www.npmjs.com/package/bcryptjs).
@@ -57,15 +57,18 @@ utilizou-se o [bcryptjs](https://www.npmjs.com/package/bcryptjs).
 Assim, na autenticação (`POST /auth`), se a senha do usuário está certa ou não, poderá ser feita
 comparando essa `hash`.
 
+#### * Endpoint de autenticação
 
-#### Criar token de autenticação JWT
+Um usuário já cadastrado no sistma poderá criar um novo token de acesso ao fazer uma requisição no endpoint /Auth.
+
+#### * Criar token de autenticação JWT
 
 JWT (JSON Web Token) é um método RCT 7519 padrão da indústria para realizar autenticação entre duas partes por meio de um token assinado que autentica uma requisição web. Esse token é um código em Base64 que armazena objetos JSON com os dados que permitem a autenticação da requisição.
 
 Um cliente que enviará uma requisição HTTP ao endpoint de autenticação de uma API. Nela o cliente envia, no corpo da requisição dados como endereço de e-mail e senha. [Fonte](https://www.devmedia.com.br/como-o-jwt-funciona/40265).
 
 
-#### Criar a documentação da API
+#### * Criar a documentação da API
 
 Foi utilizado o [Swagger](https://swagger.io/docs/specification/about/) para escrever a documentação.
 
@@ -128,9 +131,8 @@ Conforme o desafio estabelecido no desenvolvimento do desajio, a API possui os s
   <img align="center" alt="git" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg" />
   <img align="center" alt="git" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" />
   <img align="center" alt="git" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain-wordmark.svg" />
-
 </div><br>
 
 ## 
 
-💻  Desenvolvido por [Carolina Alvim](https://github.com/caroAlvim) 
+💻  Desenvolvido por [Carolina Alvim](https://www.linkedin.com/in/carolina-alvim/) 
