@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Krusty Krab API",
-        "description": "House of Crabby Patty" ,
+        "description": "House of Krabby Patty" ,
         "termsOfService": "https://smartbear.com/terms-of-use/",
         "contact": {
             "url": "https://github.com/caroAlvim/",
@@ -17,7 +17,7 @@
     "servers": [
         {
             "url": "https://krusty-krab-api.herokuapp.com/",
-            "description": "House of Crabby Patty"
+            "description": "House of Krabby Patty"
         }
     ],
     "paths": {
