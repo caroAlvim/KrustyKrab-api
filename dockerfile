@@ -20,4 +20,4 @@ COPY . ./
 
 # 3. Executar
 # executar arquivo;
-CMD node 
+CMD npm install 
